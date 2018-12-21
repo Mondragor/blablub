@@ -13,13 +13,10 @@ addons:
 
 install:
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
-  - php artisan key:generate
 
-before_script:
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-  - php artisan serve &
+script:
 
-script: deploy:
+deploy:
   # deploy develop to the staging environment
   - provider: script
     script: bash scripts/deploy.sh staging
